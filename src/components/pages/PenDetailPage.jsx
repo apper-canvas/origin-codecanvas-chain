@@ -22,9 +22,9 @@ const { id } = useParams();
   const [showEmbedModal, setShowEmbedModal] = useState(false);
 
   // Update like count when pen loads
-  useState(() => {
+useState(() => {
     if (pen) {
-      setLikeCount(pen.likes || 0);
+      setLikeCount(pen.likes_c || 0);
     }
   }, [pen]);
 
@@ -53,11 +53,11 @@ const { id } = useParams();
   }
 
   const handleFork = () => {
-    const forkedPenData = {
-      title: `Fork of ${pen.title}`,
-      html: pen.html,
-      css: pen.css,
-      javascript: pen.javascript
+const forkedPenData = {
+      title: `Fork of ${pen.title_c}`,
+      html: pen.html_c,
+      css: pen.css_c,
+      javascript: pen.javascript_c
     };
     
     localStorage.setItem("pendingFork", JSON.stringify(forkedPenData));
@@ -94,7 +94,7 @@ const { id } = useParams();
     setShowEmbedModal(true);
   };
 
-  const shareUrl = `${window.location.origin}/pen/${pen.Id}`;
+const shareUrl = `${window.location.origin}/pen/${pen.Id}`;
   const embedCode = `<iframe src="${shareUrl}" width="100%" height="400" frameBorder="0"></iframe>`;
   return (
 <div className="min-h-screen bg-background">
@@ -114,32 +114,32 @@ const { id } = useParams();
               
               <div>
                 <h1 className="text-2xl md:text-3xl font-bold text-slate-200 mb-2">
-                  {pen.title}
+{pen.title_c}
                 </h1>
                 <div className="flex items-center gap-4 flex-wrap">
                   <div className="flex items-center gap-2">
                     <Avatar 
                       src={pen.author?.avatar} 
-                      alt={pen.author?.name}
+                      alt={pen.author_name_c}
                       size="default"
                     />
-                    <span className="text-slate-300">{pen.author?.name}</span>
+                    <span className="text-slate-300">{pen.author_name_c}</span>
                   </div>
                   <span className="text-slate-500">•</span>
                   <span className="text-slate-500 text-sm">
-                    {formatDistanceToNow(new Date(pen.createdAt), { addSuffix: true })}
+                    {formatDistanceToNow(new Date(pen.created_at_c), { addSuffix: true })}
                   </span>
                   <span className="text-slate-500">•</span>
                   <span className="text-slate-500 text-sm">
-                    {pen.views?.toLocaleString() || 0} views
+                    {pen.views_c?.toLocaleString() || 0} views
                   </span>
                 </div>
               </div>
             </div>
 
             <div className="flex items-center gap-4 flex-wrap">
-              <PenStats 
-                views={pen.views}
+<PenStats 
+                views={pen.views_c}
                 likes={likeCount}
                 onLike={handleLike}
                 isLiked={isLiked}
@@ -236,11 +236,11 @@ const { id } = useParams();
                       <!DOCTYPE html>
                       <html>
                         <head>
-                          <style>${pen.css}</style>
+<style>${pen.css_c}</style>
                         </head>
                         <body>
-                          ${pen.html}
-                          <script>${pen.javascript}</script>
+                          ${pen.html_c}
+                          <script>${pen.javascript_c}</script>
                         </body>
                       </html>
                     `}
@@ -261,10 +261,10 @@ const { id } = useParams();
                 </div>
 
                 {/* HTML */}
-                {pen.html && (
+{pen.html_c && (
                   <CodePanel
                     title="HTML"
-                    code={pen.html}
+                    code={pen.html_c}
                     language="html"
                     readOnly={true}
                     className="border border-slate-700 rounded-xl"
@@ -272,10 +272,10 @@ const { id } = useParams();
                 )}
 
                 {/* CSS */}
-                {pen.css && (
+                {pen.css_c && (
                   <CodePanel
                     title="CSS"
-                    code={pen.css}
+                    code={pen.css_c}
                     language="css"
                     readOnly={true}
                     className="border border-slate-700 rounded-xl"
@@ -283,10 +283,10 @@ const { id } = useParams();
                 )}
 
                 {/* JavaScript */}
-                {pen.javascript && (
+                {pen.javascript_c && (
                   <CodePanel
                     title="JavaScript"
-                    code={pen.javascript}
+                    code={pen.javascript_c}
                     language="javascript"
                     readOnly={true}
                     className="border border-slate-700 rounded-xl"
@@ -315,11 +315,11 @@ const { id } = useParams();
                     <!DOCTYPE html>
                     <html>
                       <head>
-                        <style>${pen.css}</style>
+<style>${pen.css_c}</style>
                       </head>
                       <body>
-                        ${pen.html}
-                        <script>${pen.javascript}</script>
+                        ${pen.html_c}
+                        <script>${pen.javascript_c}</script>
                       </body>
                     </html>
                   `}

@@ -60,25 +60,25 @@ const PenCard = ({ pen, onLike }) => {
       {/* Card Content */}
       <div className="p-6">
         <Link to={`/pen/${pen.Id}`}>
-          <h3 className="font-semibold text-slate-200 mb-3 group-hover:text-primary-400 transition-colors line-clamp-2">
-            {pen.title}
+<h3 className="font-semibold text-slate-200 mb-3 group-hover:text-primary-400 transition-colors line-clamp-2">
+            {pen.title_c}
           </h3>
         </Link>
         
         {/* Author Info */}
         <div className="flex items-center gap-3 mb-4">
           <Avatar 
-            src={pen.author?.avatar} 
-            alt={pen.author?.name}
+src={pen.author?.avatar} 
+            alt={pen.author_name_c}
             size="default"
           />
-          <span className="text-slate-400 text-sm">{pen.author?.name}</span>
+          <span className="text-slate-400 text-sm">{pen.author_name_c}</span>
         </div>
 
         {/* Stats */}
         <PenStats 
-          views={pen.views}
-          likes={pen.likes}
+views={pen.views_c}
+          likes={pen.likes_c}
           onLike={handleLike}
           isLiked={isLiked}
         />
